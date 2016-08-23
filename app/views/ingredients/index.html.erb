@@ -2,17 +2,20 @@
 
 	<%= render 'header' %>
 	<br>
-	<%= form_for :ingredient, :url => {:controller => "ingredients", :action => "create"} do |f| %>
-	  <%= f.label "Add a safe ingredient" %>:
-	  <%= f.text_field :name %>
+	<%= form_for :ingredient, html: {class: "form-inline"}, :url => {:controller => "ingredients", :action => "create"} do |f| %>
+		
+		  <h3>
+	  <%= f.label "Add a safe ingredient", class: "label label-default" %>
+	  <%= f.text_field :name, class: "form-control" %>
 	  <%= f.hidden_field :confirmed, value: true%>
 
-	  <%= f.submit %>
+	  <%= f.submit 'Submit', :class => 'btn btn-primary' %>
+		  </h3>
 	<% end %>
 	<br>
-	<ul>
+	<ul class="list-group">
 	<% @ingreds.each do |i| %>
-		<li><%= i.name %></li>
+		<li class="list-group-item glyphicon glyphicon-ok"> <%= i.name %></li>
 	<% end %>
 	</ul>
 </div>
