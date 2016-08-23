@@ -1,15 +1,18 @@
-<%= render 'header' %>
-<br>
-<%= form_for :ingredient, :url => {:controller => "ingredients", :action => "create"} do |f| %>
-  <%= f.label "Add a safe ingredient" %>:
-  <%= f.text_field :name %>
-  <%= f.hidden_field :confirmed, value: true%>
+<div id="main-container" class="container">
 
-  <%= f.submit %>
-<% end %>
-<br>
-<ul>
-<% @ingreds.each do |i| %>
-	<li><%= i.name %></li>
-<% end %>
-</ul>
+	<%= render 'header' %>
+	<br>
+	<%= form_for :ingredient, :url => {:controller => "ingredients", :action => "create"} do |f| %>
+	  <%= f.label "Add a safe ingredient" %>:
+	  <%= f.text_field :name %>
+	  <%= f.hidden_field :confirmed, value: true%>
+
+	  <%= f.submit %>
+	<% end %>
+	<br>
+	<ul>
+	<% @ingreds.each do |i| %>
+		<li><%= i.name %></li>
+	<% end %>
+	</ul>
+</div>

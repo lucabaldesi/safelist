@@ -1,16 +1,18 @@
+<div class="row">
 <h1>Allison's safe list</h1>
+</div>
 <% if @msg %>
 	<% if @msg[:error] %>
-	<div class="error">
+	<div id="error">
 		<% @msg[:error].each do |err| %>
-			<%= err %>
+			<div class="row"><%= err %></div>
 		<% end %>
 	</div>
 	<% end %>
 	<% if @msg[:info] %>
-	<div class="info">
+	<div id="info">
 		<% @msg[:info].each do |inf| %>
-			<%= inf %>
+			<div class="row"><%= inf %></div>
 		<% end %>
 	</div>
 	<% end %>
