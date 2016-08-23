@@ -1,0 +1,17 @@
+<h1>Allison's safe list</h1>
+<% if @msg %>
+	<% if @msg[:error] %>
+	<div class="error">
+		<% @msg[:error].each do |err| %>
+			<%= err %>
+		<% end %>
+	</div>
+	<% end %>
+	<% if @msg[:info] %>
+	<div class="info">
+		<% @msg[:info].each do |inf| %>
+			<%= inf %>
+		<% end %>
+	</div>
+	<% end %>
+<% end %>
