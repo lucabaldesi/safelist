@@ -5,17 +5,59 @@
 	<%= form_for :ingredient, html: {class: "form-inline"}, :url => {:controller => "ingredients", :action => "create"} do |f| %>
 		
 		  <h3>
-	  <%= f.label "Add a safe ingredient", class: "label label-default" %>
+	  <%= f.label "Add an ingredient", class: "label label-default" %>
 	  <%= f.text_field :name, class: "form-control" %>
-	  <%= f.hidden_field :confirmed, value: true%>
 
 	  <%= f.submit 'Submit', :class => 'btn btn-primary' %>
 		  </h3>
 	<% end %>
 	<br>
-	<ul class="list-group">
-	<% @ingreds.each do |i| %>
-		<li class="list-group-item glyphicon glyphicon-ok"> <%= i.name %></li>
-	<% end %>
-	</ul>
+	<div class="row center-block">
+		<div class="col-md-4">
+				<div class="row">
+			<label class="label label-danger">Unsafe Ingredients</label>
+				</div>
+			<ul class="list-group">
+			<% @unsafe.each do |i| %>
+				<div class="row">
+					<li class="col-md-11 list-group-item glyphicon glyphicon-thumbs-down"> <%= i.name %> 
+					<%= button_to "&#x2716".html_safe(), i, method: "delete", class: "vcenter btn btn-xs btn-danger pull-right", form_class: "pull-right" %>
+					<%= button_to "&#129146".html_safe(), i, method: "put", params: {"confirmed" => "false"}, class: "vcenter btn btn-xs btn-primary pull-right", form_class: "pull-right" %>
+					</li>
+				</div>
+			<% end %>
+			</ul>
+		</div>
+		<div class="col-md-4">
+				<div class="row">
+			<label class="label label-warning">Staged Ingredients</label>
+				</div>
+			<ul class="list-group">
+			<% @staged.each do |i| %>
+				<div class="row">
+					<li class="col-md-11 list-group-item glyphicon glyphicon-hand-right"> <%= i.name %> 
+					<%= button_to "&#x2716".html_safe(), i, method: "delete", class: "vcenter btn btn-xs btn-danger pull-right", form_class: "pull-right" %>
+					<%= button_to "&#129146".html_safe(), i, method: "put", params: {"safe" => "true"}, class: "vcenter btn btn-xs btn-primary pull-right", form_class: "pull-right" %>
+					<%= button_to "&#129144".html_safe(), i, method: "put", params: {"safe" => "false"}, class: "vcenter btn btn-xs btn-primary pull-right", form_class: "pull-right" %>
+					</li>
+				</div>
+			<% end %>
+			</ul>
+		</div>
+		<div class="col-md-4">
+				<div class="row">
+			<label class="label label-success">Safe Ingredients</label>
+				</div>
+			<ul class="list-group">
+			<% @safe.each do |i| %>
+				<div class="row">
+					<li class="col-md-11 list-group-item glyphicon glyphicon-thumbs-up"> <%= i.name %> 
+					<%= button_to "&#x2716".html_safe(), i, method: "delete", class: "vcenter btn btn-xs btn-danger pull-right", form_class: "pull-right" %>
+					<%= button_to "&#129144".html_safe(), i, method: "put", params: {"confirmed" => "false"}, class: "vcenter btn btn-xs btn-primary pull-right", form_class: "pull-right" %>
+					</li>
+				</div>
+			<% end %>
+			</ul>
+		</div>
+	</div>
 </div>
