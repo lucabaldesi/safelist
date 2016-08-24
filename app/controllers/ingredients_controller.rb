@@ -7,6 +7,10 @@ class IngredientsController < ApplicationController
 		render "index"
 	end
 
+	def show
+		page
+	end
+
 	def index
 		page
 	end
